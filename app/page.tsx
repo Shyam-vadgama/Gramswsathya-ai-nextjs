@@ -1,3 +1,4 @@
+// d:\code\hack-strrom-hackathon-pro\deploy\gramswasthya-ai main\gramswasthya-ai\app\page.tsx
 "use client"
 
 import { useState, useEffect } from "react"
@@ -42,7 +43,7 @@ export default function GramswasthyaAI() {
   const [currentTime, setCurrentTime] = useState(new Date())
   const [userLocation, setUserLocation] = useState("Rampur, UP")
   const { user, isAuthenticated } = useAuth()
-
+  const currentYear: number = new Date().getFullYear();
   // Real-time updates
   useEffect(() => {
     const interval = setInterval(() => {
@@ -146,7 +147,7 @@ export default function GramswasthyaAI() {
           ? "यह प्लेटफॉर्म ग्रामीण स्वास्थ्य सेवा में क्रांति ला रहा है। AI की सटीकता अद्भुत है।"
           : "This platform is revolutionizing rural healthcare. The AI accuracy is remarkable.",
       rating: 5,
-      image: "/placeholder.svg?height=60&width=60",
+      image: "/women1.jpg",
       verified: true,
     },
     {
@@ -157,7 +158,7 @@ export default function GramswasthyaAI() {
           ? "फसल की समस्या की तुरंत पहचान हो जाती है। मेरी आय 40% बढ़ गई है।"
           : "Instant crop problem identification. My income increased by 40%.",
       rating: 5,
-      image: "/placeholder.svg?height=60&width=60",
+      image: "men1.jpg",
       verified: true,
     },
     {
@@ -168,7 +169,7 @@ export default function GramswasthyaAI() {
           ? "गांव में स्वास्थ्य सेवा पहुंचाने में अमूल्य सहायता मिली है।"
           : "Invaluable help in delivering healthcare to villages.",
       rating: 5,
-      image: "/placeholder.svg?height=60&width=60",
+      image: "women2.jpg",
       verified: true,
     },
     {
@@ -179,7 +180,7 @@ export default function GramswasthyaAI() {
           ? "किसानों को सही समय पर सही सलाह मिल रही है। बहुत प्रभावी।"
           : "Farmers get right advice at the right time. Very effective.",
       rating: 4,
-      image: "/placeholder.svg?height=60&width=60",
+      image: "men2.jpg",
       verified: true,
     },
   ]
@@ -194,7 +195,7 @@ export default function GramswasthyaAI() {
       </div>
 
       {/* Navbar */}
-      <Navbar 
+      <Navbar
         currentLanguage={currentLanguage}
         onLanguageChange={setCurrentLanguage}
         notifications={notifications}
@@ -207,7 +208,7 @@ export default function GramswasthyaAI() {
             <div className="flex items-center justify-center space-x-2 text-green-800">
               <CheckCircle2 className="w-5 h-5" />
               <span className="font-medium">
-                {currentLanguage === "hi" 
+                {currentLanguage === "hi"
                   ? `स्वागत है, ${user.name}! आपके लिए आपातकालीन और मौसम विजेट उपलब्ध हैं।`
                   : `Welcome back, ${user.name}! Emergency and weather widgets are available for you.`
                 }
@@ -217,6 +218,7 @@ export default function GramswasthyaAI() {
         </div>
       )}
 
+
       {/* Market Ticker */}
       <MarketTicker language={currentLanguage} />
 
@@ -224,7 +226,8 @@ export default function GramswasthyaAI() {
       {isVoiceActive && <VoiceInterface language={currentLanguage} isOnline={isOnline} />}
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 relative z-10">
+      <main className="container mx-auto px-4 py-8 relative z-10 space-y-16"> {/* Added space-y-16 for section spacing */}
+
         {/* Enhanced Hero Section */}
         <div className="text-center space-y-8 py-20 relative">
           <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-blue-500/5 rounded-3xl backdrop-blur-sm"></div>
@@ -255,23 +258,27 @@ export default function GramswasthyaAI() {
             <StatsOverview language={currentLanguage} />
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center mt-12">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg"
-              >
-                <Heart className="w-6 h-6 mr-3" />
-                {currentLanguage === "hi" ? "स्वास्थ्य सेवा शुरू करें" : "Start Healthcare"}
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-green-500 text-green-600 hover:bg-green-50 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg"
-              >
-                <Wheat className="w-6 h-6 mr-3" />
-                {currentLanguage === "hi" ? "कृषि सलाह लें" : "Get Agri Advice"}
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              <Link href="/healthcare">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg"
+                >
+                  <Heart className="w-6 h-6 mr-3" />
+                  {currentLanguage === "hi" ? "स्वास्थ्य सेवा शुरू करें" : "Start Healthcare"}
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <Link href="/agriculture">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-green-500 text-green-600 hover:bg-green-50 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg"
+                >
+                  <Wheat className="w-6 h-6 mr-3" />
+                  {currentLanguage === "hi" ? "कृषि सलाह लें" : "Get Agri Advice"}
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
               <Button
                 size="lg"
                 variant="secondary"
@@ -304,7 +311,7 @@ export default function GramswasthyaAI() {
         </div>
 
         {/* Quick Actions */}
-        <div className="space-y-6">
+        <div className="space-y-6"> {/* Added space-y-6 for internal spacing */}
           <div className="text-center">
             <h3 className="text-3xl font-bold text-gray-900 mb-2">
               {currentLanguage === "hi" ? "त्वरित कार्य" : "Quick Actions"}
@@ -313,6 +320,7 @@ export default function GramswasthyaAI() {
               {currentLanguage === "hi" ? "सबसे उपयोगी सुविधाओं तक तुरंत पहुंच" : "Instant access to most useful features"}
             </p>
           </div>
+          {/* The QuickActions component itself would need enhancement in QuickActions.tsx */}
           <QuickActions language={currentLanguage} />
         </div>
 
@@ -341,7 +349,7 @@ export default function GramswasthyaAI() {
                       </div>
                     </div>
                   </div>
-                </div>  
+                </div>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base leading-relaxed mb-4">{feature.description}</CardDescription>
@@ -368,7 +376,7 @@ export default function GramswasthyaAI() {
                   {currentLanguage === "hi" ? "आपका स्वागत है!" : "Welcome Back!"}
                 </h3>
                 <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                  {currentLanguage === "hi" 
+                  {currentLanguage === "hi"
                     ? "आपके लिए आपातकालीन और मौसम विजेट उपलब्ध हैं। नेविगेशन बार में इन सुविधाओं का लाभ उठाएं।"
                     : "Emergency and weather widgets are available for you. Access these features in the navigation bar."
                   }
@@ -413,7 +421,7 @@ export default function GramswasthyaAI() {
                   {currentLanguage === "hi" ? "आज ही शुरू करें" : "Get Started Today"}
                 </h3>
                 <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                  {currentLanguage === "hi" 
+                  {currentLanguage === "hi"
                     ? "मुफ्त खाता बनाएं और ग्रामीण भारत के डिजिटल भविष्य का हिस्सा बनें। AI-संचालित स्वास्थ्य और कृषि सेवाओं का लाभ उठाएं।"
                     : "Create a free account and be part of rural India's digital future. Access AI-powered health and agriculture services."
                   }
@@ -457,7 +465,7 @@ export default function GramswasthyaAI() {
         </div>
 
         {/* Enhanced Testimonials */}
-        <div className="space-y-8">
+        <div className="space-y-8"> {/* Added space-y-8 for internal spacing */}
           <div className="text-center">
             <h3 className="text-4xl font-bold text-gray-900 mb-4">
               {currentLanguage === "hi" ? "उपयोगकर्ता समीक्षा" : "User Testimonials"}
@@ -475,9 +483,9 @@ export default function GramswasthyaAI() {
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <img
-                      src={testimonial.image || "/placeholder.svg"}
+                      src={testimonial.image || "/women1.jpg"}
                       alt={testimonial.name}
-                      className="w-12 h-12 rounded-full mr-3"
+                      className="w-12 h-12 rounded-full mr-3 object-cover" // Added object-cover
                     />
                     <div>
                       <div className="flex items-center">
@@ -505,7 +513,7 @@ export default function GramswasthyaAI() {
       </main>
 
       {/* Enhanced Footer */}
-      <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20 mt-24 relative overflow-hidden">
+      <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20 mt-24 relative overflow-hidden"> {/* Adjusted margin-top */}
         <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-blue-500/10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
@@ -596,7 +604,7 @@ export default function GramswasthyaAI() {
 
           <div className="border-t border-gray-700 pt-8 text-center">
             <p className="text-gray-400">
-              © 2024 Gramswasthya AI. {currentLanguage === "hi" ? "सर्वाधिकार सुरक्षित" : "All rights reserved"}. 
+              © {new Date().getFullYear()} Gramswasthya AI. {currentLanguage === "hi" ? "सर्वाधिकार सुरक्षित" : "All rights reserved"}.
               {currentLanguage === "hi" ? "राज कंजरिया और श्याम वडगामा द्वारा निर्मित" : "Created by Raj Kanzariya & Shyam Vadgama"}
             </p>
           </div>
